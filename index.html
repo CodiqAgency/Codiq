@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO de bază -->
+  <title>Codiq — Creare site-uri web moderne care aduc clienți</title>
+  <meta name="description" content="Codiq creează site-uri web moderne, rapide și optimizate pentru mobil, care aduc clienți afacerii tale. Cere o ofertă gratuită — îți răspundem în 24h.">
+  <!-- EDITEAZĂ: pune domeniul real (folosit și de Open Graph mai jos) -->
+  <link rel="canonical" href="https://PLACEHOLDER_URL/">
+  <meta name="theme-color" content="#F6F6F8">
+
+  <!-- Favicon & branding — EDITEAZĂ: creează fișierele în /assets/ -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <!-- Open Graph (Facebook / LinkedIn / WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codiq">
+  <meta property="og:title" content="Codiq — Creare site-uri web moderne care aduc clienți">
+  <meta property="og:description" content="Site-uri moderne, rapide și optimizate pentru mobil, care aduc clienți. Cere o ofertă gratuită — răspundem în 24h.">
+  <meta property="og:locale" content="ro_RO">
+  <!-- EDITEAZĂ: URL-ul paginii și imaginea OG (creează /assets/og-image.jpg, 1200x630) -->
+  <meta property="og:url" content="https://PLACEHOLDER_URL/">
+  <meta property="og:image" content="https://PLACEHOLDER_URL/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Codiq — Creare site-uri web moderne care aduc clienți">
+  <meta name="twitter:description" content="Site-uri moderne, rapide și optimizate pentru mobil, care aduc clienți. Cere o ofertă gratuită — răspundem în 24h.">
+  <meta name="twitter:image" content="https://PLACEHOLDER_URL/assets/og-image.jpg">
+
+  <!-- Google Fonts: doar weight-urile folosite (Inter 400/500/600, Poppins 700/800) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Design system (tokeni) mai întâi, apoi stilurile componentelor -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- ========================================================
+       DATE STRUCTURATE (JSON-LD) — LocalBusiness / Organization
+       ────────────────────────────────────────────────────
+       EDITEAZĂ toate câmpurile marcate PLACEHOLDER_* cu datele
+       reale (nume legal, telefon, email, zonă deservită, URL,
+       logo, rețele sociale).
+       ======================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Codiq",
+    "description": "Agenție de web development. Creăm site-uri moderne, rapide și optimizate pentru mobil, care aduc clienți.",
+    "url": "https://PLACEHOLDER_URL/",
+    "logo": "https://PLACEHOLDER_URL/assets/logo.png",
+    "image": "https://PLACEHOLDER_URL/assets/og-image.jpg",
+    "email": "PLACEHOLDER_EMAIL",
+    "telephone": "PLACEHOLDER_TELEFON",
+    "priceRange": "$$",
+    "areaServed": "PLACEHOLDER_ZONA",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RO",
+      "addressLocality": "PLACEHOLDER_ORAS"
+    },
+    "sameAs": [
+      "PLACEHOLDER_FACEBOOK_URL",
+      "PLACEHOLDER_INSTAGRAM_URL"
+    ]
+  }
+  </script>
+
+  <!-- ========================================================
+       META PIXEL (cod de bază)
+       ────────────────────────────────────────────────────
+       EDITEAZĂ: înlocuiește PUNE_AICI_PIXEL_ID cu ID-ul real
+       al pixelului din Meta Events Manager.
+       Evenimentul standard „Lead" NU se declanșează aici —
+       se declanșează doar la trimiterea CU SUCCES a
+       formularului (vezi js/main.js, funcția de submit).
+       ======================================================== -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    /* ↓↓↓ Înlocuiește cu PIXEL_ID-ul tău ↓↓↓ */
+    fbq('init', 'PUNE_AICI_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" alt=""
+         src="https://www.facebook.com/tr?id=PUNE_AICI_PIXEL_ID&ev=PageView&noscript=1">
+  </noscript>
+  <!-- ============ SFÂRȘIT META PIXEL ============ -->
+</head>
+<body>
+
+  <!-- ========================================================
+       NAVBAR (sticky)
+       ======================================================== -->
+  <header class="nav" id="top">
+    <nav class="nav__inner container" aria-label="Navigare principală">
+      <!-- Logo -->
+      <a class="nav__logo" href="#top" aria-label="Codiq — acasă">Codiq</a>
+
+      <!-- Ancore -->
+      <ul class="nav__links" id="nav-links">
+        <li><a class="nav__link" href="#servicii">Servicii</a></li>
+        <li><a class="nav__link" href="#portofoliu">Portofoliu</a></li>
+        <li><a class="nav__link" href="#proces">Proces</a></li>
+        <li><a class="nav__link" href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Acțiuni dreapta: CTA (mereu vizibil) + hamburger (mobil) -->
+      <div class="nav__actions">
+        <a class="btn btn--primary btn--sm" href="#contact">Cere o ofertă</a>
+        <button class="nav__toggle" type="button"
+                aria-label="Deschide meniul" aria-expanded="false"
+                aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ======================================================
+         HERO
+         ====================================================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__grid container">
+
+        <!-- Coloana de text -->
+        <div class="hero__content">
+          <span class="eyebrow hero__eyebrow">Agenție de web development</span>
+
+          <h1 class="hero__title" id="hero-title">
+            Site-uri care aduc clienți, nu doar vizite.
+          </h1>
+
+          <p class="hero__lede">
+            Construim site-uri moderne, rapide și optimizate pentru mobil,
+            pentru afaceri care vor să crească.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contact">Cere o ofertă gratuită</a>
+            <a class="btn btn--ghost" href="#portofoliu">Vezi portofoliul</a>
+          </div>
+
+          <span class="pill-badge">
+            <span class="pill-badge__dot" aria-hidden="true"></span>
+            Răspundem în 24h
+          </span>
+        </div>
+
+        <!-- Zona vizuală: orb decorativ + mockup (PNG cu fundal transparent) -->
+        <div class="hero__visual">
+          <div class="hero__orb" aria-hidden="true"></div>
+          <!-- mockup-web.png = versiune redimensionată la 1600px (originalul de
+               6400px are 2.8MB). Pentru și mai puțin, convertește în .webp. -->
+          <img class="hero__mockup-img"
+               src="assets/mockup-web.png"
+               alt="Exemple de site-uri create de Codiq, afișate pe laptop"
+               width="1600" height="1600" fetchpriority="high" decoding="async">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 3 · BARĂ DE DOVADĂ SOCIALĂ (thin strip)
+         ====================================================== -->
+    <section class="proof" aria-label="Rezultate cheie">
+      <div class="container">
+        <ul class="proof__list">
+          <li class="proof__item">
+            <span class="proof__num">10+</span>
+            <span class="proof__label">Proiecte livrate</span>
+          </li>
+          <li class="proof__item">
+            <span class="proof__num">+20%</span>
+            <span class="proof__label">Creștere medie a cererilor</span>
+          </li>
+          <li class="proof__item">
+            <span class="proof__num">24h</span>
+            <span class="proof__label">Timp de răspuns</span>
+          </li>
+          <li class="proof__item">
+            <span class="proof__num">100%</span>
+            <span class="proof__label">Responsive</span>
+          </li>
+        </ul>
+
+        <!-- ALTERNATIV: rând de logo-uri de clienți în locul cifrelor.
+             Decomentează acest bloc și comentează .proof__list de mai sus.
+        <div class="proof__logos" aria-label="Clienți care ne-au ales">
+          <div class="proof__logo">Logo 1</div>
+          <div class="proof__logo">Logo 2</div>
+          <div class="proof__logo">Logo 3</div>
+          <div class="proof__logo">Logo 4</div>
+          <div class="proof__logo">Logo 5</div>
+        </div>
+        -->
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 4 · PROBLEMA (agită durerea)
+         ====================================================== -->
+    <section class="problem" id="problema" aria-labelledby="problem-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">De ce contează</span>
+          <h2 class="section-title" id="problem-title">
+            Site-ul tău îți aduce clienți sau doar există?
+          </h2>
+          <p class="section-lede">
+            Majoritatea site-urilor arată bine, dar nu fac nimic pentru afacere.
+            Uite unde se pierd clienții:
+          </p>
+        </header>
+
+        <div class="problem__grid">
+          <!-- Card 1 -->
+          <article class="pain-card" data-reveal>
+            <span class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+            </span>
+            <h3 class="pain-card__title">Pleacă în 3 secunde</h3>
+            <p class="pain-card__text">
+              Un site lent sau învechit alungă vizitatorii înainte să apuce
+              să vadă ce oferi.
+            </p>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="pain-card" data-reveal>
+            <span class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M21 21l-4.3-4.3"></path>
+              </svg>
+            </span>
+            <h3 class="pain-card__title">Invizibil pe Google</h3>
+            <p class="pain-card__text">
+              Dacă nu te găsesc când te caută, ajung direct la concurență.
+            </p>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="pain-card" data-reveal>
+            <span class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="3" width="10" height="18" rx="2"></rect>
+                <path d="M11 18h2"></path>
+              </svg>
+            </span>
+            <h3 class="pain-card__title">Prost pe telefon</h3>
+            <p class="pain-card__text">
+              95% intră de pe mobil. Un site care nu arată bine acolo
+              îți pierde clienții.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 5 · SOLUȚIA / SERVICIILE (feature card)
+         ====================================================== -->
+    <section class="solution" id="servicii" aria-labelledby="solution-title">
+      <div class="container solution__inner">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Ce facem</span>
+          <h2 class="section-title" id="solution-title">
+            Site-uri gândite să aducă rezultate
+          </h2>
+        </header>
+
+        <div class="solution__body">
+          <!-- Orb decorativ (singura pată de culoare) -->
+          <div class="solution__orb" aria-hidden="true"></div>
+
+          <!-- Feature card semnătură -->
+          <div class="feature-card" data-reveal>
+            <div class="feature-row">
+              <span class="icon-chip icon-chip--dark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"></path>
+                </svg>
+              </span>
+              <div class="feature-row__text">
+                <h3 class="feature-row__title">Design modern, personalizat</h3>
+                <p class="feature-row__desc">Nu template. Gândit pe afacerea și publicul tău.</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <span class="icon-chip icon-chip--dark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="13" rx="2"></rect>
+                  <path d="M8 21h8M12 17v4"></path>
+                </svg>
+              </span>
+              <div class="feature-row__text">
+                <h3 class="feature-row__title">100% responsive</h3>
+                <p class="feature-row__desc">Perfect pe telefon, tabletă și desktop.</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <span class="icon-chip icon-chip--dark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 2L4 14h6l-1 8 9-12h-6z"></path>
+                </svg>
+              </span>
+              <div class="feature-row__text">
+                <h3 class="feature-row__title">Optimizat pentru viteză și Google</h3>
+                <p class="feature-row__desc">Rapid, cu SEO tehnic, ca să te găsească clienții.</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <span class="icon-chip icon-chip--dark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 12v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6"></path>
+                  <path d="M12 3v12M8 11l4 4 4-4"></path>
+                </svg>
+              </span>
+              <div class="feature-row__text">
+                <h3 class="feature-row__title">Suport după lansare</h3>
+                <p class="feature-row__desc">Nu dispărem după publicare. Rămânem alături.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA sub feature card -->
+          <div class="solution__cta" data-reveal>
+            <a class="btn btn--primary" href="#contact">Cere o ofertă gratuită</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 6 · PORTOFOLIU
+         ────────────────────────────────────────────────────
+         EDITEAZĂ UȘOR: pentru fiecare card schimbă
+           • numele clientului  →  .project-card__client
+           • tipul afacerii     →  .project-card__type
+           • rezultatul         →  .project-card__result
+           • linkul live        →  href de pe „Vezi live"
+           • textul alt          →  alt="Site pentru … — …"
+         Imaginile stau în /assets/ (înlocuiește-le cu cele reale;
+         numele actuale sunt placeholders, spațiile sunt codate %20).
+         Ordinea cardurilor = ordinea de afișare (pune primele
+         proiectele cele mai puternice).
+         ====================================================== -->
+    <section class="portfolio" id="portofoliu" aria-labelledby="portfolio-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Portofoliu</span>
+          <h2 class="section-title" id="portfolio-title">
+            Site-uri reale, pentru afaceri reale
+          </h2>
+          <p class="section-lede">
+            Fiecare proiect, gândit să aducă rezultate — nu doar să arate bine.
+          </p>
+        </header>
+
+        <div class="portfolio__grid">
+
+          <!-- Proiect 1 -->
+          <!-- PERFORMANȚĂ: exportă screenshot-urile ca WebP (mult mai mici
+               decât PNG/JPG). Ideal folosește <picture> cu fallback, ca mai jos.
+               Înlocuiește <img> cu blocul <picture> după ce ai fișierele .webp:
+
+          <picture>
+            <source srcset="assets/proiect-1.webp" type="image/webp">
+            <img class="project-card__img" src="assets/proiect-1.jpg"
+                 alt="Site pentru [Nume client] — [Tip afacere]"
+                 loading="lazy" width="880" height="1420">
+          </picture>
+          -->
+          <figure class="project-card" data-reveal style="--i:0">
+            <button class="project-card__frame" type="button"
+                    aria-label="Vezi imaginea mare a proiectului">
+              <img class="project-card__img"
+                   src="assets/frame%203%20jitter.png"
+                   alt="Site pentru [Nume client] — [Tip afacere]"
+                   loading="lazy" width="880" height="1420">
+            </button>
+            <figcaption class="project-card__body">
+              <div class="project-card__meta">
+                <h3 class="project-card__client">Birou de Avocați</h3>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Proiect 2 -->
+          <figure class="project-card" data-reveal style="--i:1">
+            <button class="project-card__frame" type="button"
+                    aria-label="Vezi imaginea mare a proiectului">
+              <img class="project-card__img"
+                   src="assets/jitter%20test%204.png"
+                   alt="Site pentru [Nume client] — [Tip afacere]"
+                   loading="lazy" width="880" height="1420">
+            </button>
+            <figcaption class="project-card__body">
+              <div class="project-card__meta">
+                <h3 class="project-card__client">Salon SPA</h3>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Proiect 3 -->
+          <figure class="project-card" data-reveal style="--i:2">
+            <button class="project-card__frame" type="button"
+                    aria-label="Vezi imaginea mare a proiectului">
+              <img class="project-card__img"
+                   src="assets/test%20jitter%202.png"
+                   alt="Site pentru [Nume client] — [Tip afacere]"
+                   loading="lazy" width="880" height="1420">
+            </button>
+            <figcaption class="project-card__body">
+              <div class="project-card__meta">
+                <h3 class="project-card__client">Portofoliu</h3>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Proiect 4 -->
+          <figure class="project-card" data-reveal style="--i:3">
+            <button class="project-card__frame" type="button"
+                    aria-label="Vezi imaginea mare a proiectului">
+              <img class="project-card__img"
+                   src="assets/test-jittyyh.png"
+                   alt="Site pentru [Nume client] — [Tip afacere]"
+                   loading="lazy" width="880" height="1420">
+            </button>
+            <figcaption class="project-card__body">
+              <div class="project-card__meta">
+                <h3 class="project-card__client">Sisteme de încălzire</h3>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Proiect 5 -->
+          <figure class="project-card" data-reveal style="--i:4">
+            <button class="project-card__frame" type="button"
+                    aria-label="Vezi imaginea mare a proiectului">
+              <img class="project-card__img"
+                   src="assets/testdsass.png"
+                   alt="Site pentru [Nume client] — [Tip afacere]"
+                   loading="lazy" width="880" height="1420">
+            </button>
+            <figcaption class="project-card__body">
+              <div class="project-card__meta">
+                <h3 class="project-card__client">Landing Page a unei Aplicații</h3>
+              </div>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 7 · PROCESUL
+         ====================================================== -->
+    <section class="process" id="proces" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Cum lucrăm</span>
+          <h2 class="section-title" id="process-title">
+            De la idee la site, în 4 pași simpli
+          </h2>
+          <p class="section-lede">
+            Fără termeni tehnici, fără bătăi de cap. Ne ocupăm noi de tot.
+          </p>
+        </header>
+
+        <ol class="process__steps" data-lit>
+          <!-- Linia de conexiune + glow-ul care „curge" -->
+          <span class="process__line" aria-hidden="true">
+            <span class="process__line-fill"></span>
+          </span>
+
+          <!-- Pas 1 -->
+          <li class="process__step" data-reveal style="--i:0">
+            <span class="step__chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+              </svg>
+              <span class="step__num">1</span>
+            </span>
+            <h3 class="step__title">Discutăm</h3>
+            <p class="step__text">Ne spui ce vrei și ce îți dorești de la site.</p>
+          </li>
+
+          <!-- Pas 2 -->
+          <li class="process__step" data-reveal style="--i:1">
+            <span class="step__chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"></path>
+              </svg>
+              <span class="step__num">2</span>
+            </span>
+            <h3 class="step__title">Proiectăm</h3>
+            <p class="step__text">Îți trimitem designul, gândit pe afacerea ta.</p>
+          </li>
+
+          <!-- Pas 3 -->
+          <li class="process__step" data-reveal style="--i:2">
+            <span class="step__chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"></path>
+              </svg>
+              <span class="step__num">3</span>
+            </span>
+            <h3 class="step__title">Aprobi</h3>
+            <p class="step__text">Ajustăm împreună până e exact cum vrei.</p>
+          </li>
+
+          <!-- Pas 4 -->
+          <li class="process__step" data-reveal style="--i:3">
+            <span class="step__chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"></path>
+                <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"></path>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+              </svg>
+              <span class="step__num">4</span>
+            </span>
+            <h3 class="step__title">Publicăm</h3>
+            <p class="step__text">Punem site-ul live și rămânem alături după.</p>
+          </li>
+        </ol>
+
+        <div class="process__cta" data-reveal>
+          <a class="btn btn--primary" href="#contact">Cere o ofertă gratuită</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 8 · TESTIMONIALE
+         ────────────────────────────────────────────────────
+         EDITEAZĂ: înlocuiește citatul, numele și firma din
+         fiecare card. Poza rotundă e opțională (vezi comentariu).
+         ====================================================== -->
+    <section class="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Ce spun clienții</span>
+          <h2 class="section-title" id="testimonials-title">
+            Rezultate, nu doar promisiuni
+          </h2>
+        </header>
+
+        <div class="testimonials__grid">
+
+          <!-- Testimonial 1 -->
+          <figure class="testimonial-card" data-reveal style="--i:0">
+            <div class="testimonial-card__stars" role="img" aria-label="5 din 5 stele">
+              ★★★★★
+            </div>
+            <blockquote class="testimonial-card__quote">
+              Profesioniști, rapizi și atenți la detalii. Recomand cu încredere oricui vrea un site serios.
+            </blockquote>
+            <figcaption class="testimonial-card__author">
+              <img class="testimonial-card__avatar" src="assets/octavian.jpg"
+                   alt="uniterm" width="44" height="44" loading="lazy">
+              <span class="testimonial-card__meta">
+                <span class="testimonial-card__name">Butnaru Octavian</span>
+                <span class="testimonial-card__firm">Uniterm / Sisteme de încălzire</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <!-- Testimonial 2 -->
+          <figure class="testimonial-card" data-reveal style="--i:1">
+            <div class="testimonial-card__stars" role="img" aria-label="5 din 5 stele">
+              ★★★★★
+            </div>
+            <blockquote class="testimonial-card__quote">
+              Colaborare excelentă de la început până la final. Site-ul arată exact cum mi-am dorit și clienții îl remarcă.
+            </blockquote>
+            <figcaption class="testimonial-card__author">
+              <img class="testimonial-card__avatar" src="assets/linadontu.jpg"
+                   alt="portofoliu" width="44" height="44" loading="lazy">
+              <span class="testimonial-card__meta">
+                <span class="testimonial-card__name">Lina Dontu</span>
+                <span class="testimonial-card__firm">Portofoliu / Fotograf</span>
+              </span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 9 · FAQ (accordion accesibil)
+         ────────────────────────────────────────────────────
+         Fiecare item e independent (se pot deschide mai multe).
+         Butoanele au aria-expanded; panourile au role/aria-hidden.
+         EDITEAZĂ: completează răspunsurile marcate [placeholder].
+         ====================================================== -->
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Întrebări frecvente</span>
+          <h2 class="section-title" id="faq-title">
+            Răspundem la ce te întrebi
+          </h2>
+        </header>
+
+        <div class="faq__list" data-reveal>
+
+          <!-- Q1 -->
+          <div class="faq-item">
+            <h3 class="faq-item__q">
+              <button type="button" class="faq-item__trigger"
+                      aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+                <span>Cât durează să-mi faceți site-ul?</span>
+                <svg class="faq-item__icon" viewBox="0 0 24 24" width="20" height="20"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-a1" role="region"
+                 aria-labelledby="faq-q1" hidden>
+              <p>Crearea unui site durează între 1 și 4 săptămâni, în funcție
+                 de complexitate. Îți dăm un termen clar de la început.</p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <h3 class="faq-item__q">
+              <button type="button" class="faq-item__trigger"
+                      aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+                <span>Cât costă un site?</span>
+                <svg class="faq-item__icon" viewBox="0 0 24 24" width="20" height="20"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-a2" role="region"
+                 aria-labelledby="faq-q2" hidden>
+              <p>Prețul site-ului depinde tipul acestuia; oferim un preț
+                 fix, fără costuri ascunse de la început.</p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <h3 class="faq-item__q">
+              <button type="button" class="faq-item__trigger"
+                      aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+                <span>Trebuie să mă pricep la ceva tehnic?</span>
+                <svg class="faq-item__icon" viewBox="0 0 24 24" width="20" height="20"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-a3" role="region"
+                 aria-labelledby="faq-q3" hidden>
+              <p>Deloc. Ne ocupăm noi de tot, tu doar aprobi.</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <h3 class="faq-item__q">
+              <button type="button" class="faq-item__trigger"
+                      aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+                <span>Ce se întâmplă după ce site-ul e gata?</span>
+                <svg class="faq-item__icon" viewBox="0 0 24 24" width="20" height="20"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-a4" role="region"
+                 aria-labelledby="faq-q4" hidden>
+              <p>Rămânem alături cu suport și
+                 mentenanță; facem actualizări și te ajutăm la nevoie.</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <h3 class="faq-item__q">
+              <button type="button" class="faq-item__trigger"
+                      aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+                <span>Trebuie să achit ceva înainte să începeți lucrul?</span>
+                <svg class="faq-item__icon" viewBox="0 0 24 24" width="20" height="20"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-a5" role="region"
+                 aria-labelledby="faq-q5" hidden>
+              <p>Nu, prima plata în valoare de 50% se efectuează după ce vedeți primul prototip. Astfel aveți
+                timp să decideți dacă să continuăm colaborarea, deci 0 risc pentru dvs.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         SECȚIUNEA 10 · CONTACT / CTA FINAL
+         ────────────────────────────────────────────────────
+         EDITEAZĂ:
+           • FORMSPREE: pune endpoint-ul real în js/main.js
+             (constanta FORMSPREE_ENDPOINT).
+           • WhatsApp: înlocuiește PLACEHOLDER_NUMAR din href
+             (format internațional fără +, ex. 40712345678).
+         ====================================================== -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact__card" data-reveal>
+          <!-- Orb decorativ subtil -->
+          <div class="contact__orb" aria-hidden="true"></div>
+
+          <div class="contact__inner">
+            <header class="contact__head">
+              <span class="eyebrow eyebrow--on-dark">Hai să începem</span>
+              <h2 class="contact__title" id="contact-title">
+                Gata să ai un site care aduce clienți?
+              </h2>
+              <p class="contact__lede">
+                Cere o ofertă gratuită. Îți răspundem în 24 de ore.
+              </p>
+            </header>
+
+            <!-- FORMULAR -->
+            <form class="contact-form" id="contact-form" novalidate>
+              <!-- Nume -->
+              <div class="field">
+                <label class="field__label" for="cf-name">Nume</label>
+                <input class="field__input" type="text" id="cf-name" name="name"
+                       autocomplete="name" required
+                       aria-describedby="cf-name-err">
+                <span class="field__error" id="cf-name-err" hidden>
+                  Te rugăm să-ți scrii numele.
+                </span>
+              </div>
+
+              <!-- Telefon sau email (unul e suficient) -->
+              <div class="field">
+                <label class="field__label" for="cf-contact">Telefon sau email</label>
+                <input class="field__input" type="text" id="cf-contact" name="contact"
+                       inputmode="email" autocomplete="email" required
+                       placeholder="Telefon sau email — e suficient unul"
+                       aria-describedby="cf-contact-hint cf-contact-err">
+                <span class="field__hint" id="cf-contact-hint">
+                  Lasă-ne un telefon sau un email — te contactăm noi.
+                </span>
+                <span class="field__error" id="cf-contact-err" hidden>
+                  Introdu un telefon sau un email valid.
+                </span>
+              </div>
+
+              <!-- Tip site -->
+              <div class="field">
+                <label class="field__label" for="cf-type">Ce tip de site vrei?</label>
+                <select class="field__input field__select" id="cf-type" name="type">
+                  <option value="Site de prezentare">Site de prezentare</option>
+                  <option value="Magazin online">Magazin online</option>
+                  <option value="Landing page">Landing page</option>
+                  <option value="Altceva">Altceva</option>
+                </select>
+              </div>
+
+              <!-- Mesaj (opțional) -->
+              <div class="field">
+                <label class="field__label" for="cf-message">
+                  Mesaj scurt <span class="field__optional">(opțional)</span>
+                </label>
+                <textarea class="field__input field__textarea" id="cf-message"
+                          name="message" rows="3"
+                          placeholder="Spune-ne pe scurt ce îți dorești"></textarea>
+              </div>
+
+              <!-- Buton submit + alternativă WhatsApp -->
+              <div class="contact-form__actions">
+                <button class="btn btn--primary btn--block" type="submit">
+                  Cere o ofertă gratuită
+                </button>
+                <a class="btn btn--whatsapp btn--block"
+                   href="https://wa.me/40722910955"
+                   target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                       aria-hidden="true">
+                    <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0012.04 2zm0 1.67c2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 012.42 5.82c0 4.54-3.7 8.23-8.24 8.23a8.2 8.2 0 01-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23zm4.52 10.28c-.25-.12-1.47-.72-1.7-.8-.22-.09-.39-.13-.55.12-.16.25-.63.8-.77.96-.14.16-.28.18-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.28.37-.42.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42l-.47-.01c-.16 0-.42.06-.64.31-.22.25-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.47-.28z"/>
+                  </svg>
+                  Scrie-ne pe WhatsApp
+                </a>
+              </div>
+
+              <!-- Mesaj de stare (succes / eroare) — accesibil -->
+              <p class="contact-form__status" id="contact-status"
+                 role="status" aria-live="polite" hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ────────────────────────────────────────────────────
+       EDITEAZĂ: telefon, email, WhatsApp și linkurile sociale.
+       ======================================================== -->
+  <footer class="footer" aria-label="Subsol">
+    <div class="container">
+      <!-- Contact bar (pill din design system) -->
+      <div class="contact-bar">
+        <a class="contact-bar__brand" href="#top" aria-label="Codiq — acasă">
+          <span class="contact-bar__mark" aria-hidden="true"></span>
+          <span class="contact-bar__name">Codiq</span>
+        </a>
+        <div class="contact-bar__links">
+          <a href="tel:+37378505500">Telefon</a>
+          <a href="mailto:butnaru.dann@gmail.com">Email</a>
+          <a href="https://wa.me/40722910955" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Linkuri rapide + social + copyright -->
+      <div class="footer__bottom">
+        <nav class="footer__nav" aria-label="Linkuri rapide">
+          <a href="#servicii">Servicii</a>
+          <a href="#portofoliu">Portofoliu</a>
+          <a href="#proces">Proces</a>
+          <a href="#faq">Întrebări</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <p class="footer__copy">© 2026 Codiq</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       LIGHTBOX PORTOFOLIU
+       Se deschide la click pe un card de portofoliu și arată
+       imaginea întreagă, mare. Închidere: buton ×, click pe
+       fundal sau tasta Escape. (logica în js/main.js)
+       ======================================================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Previzualizare proiect">
+    <button class="lightbox__close" type="button" aria-label="Închide previzualizarea">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+    <img class="lightbox__img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

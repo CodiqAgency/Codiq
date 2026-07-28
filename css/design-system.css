@@ -1,0 +1,113 @@
+/* ============================================================
+   CODIQ · Studio Silver — Design System
+   Toți tokenii trăiesc aici, ca CSS custom properties în :root.
+   Copiază acest bloc în orice proiect pentru a moșteni sistemul.
+   ============================================================ */
+
+:root {
+  /* --------------------------------------------------------
+     1. Culori — silver studio, near-black, accent violet→amber
+     -------------------------------------------------------- */
+  --silver-100: #F6F6F8;   /* backdrop cel mai deschis */
+  --silver-200: #ECECF0;   /* backdrop mediu */
+  --silver-300: #DDDEE3;   /* latura de umbră a backdrop-ului */
+  --silver-400: #B7B9C1;   /* colțul cel mai închis al studio sweep-ului */
+
+  --ink:        #0B0B0C;   /* headline-uri display, text principal */
+  --ink-700:    #27272B;   /* text secundar, border buton ghost */
+  --slate:      #5E5E66;   /* lede / body atenuat */
+  --slate-400:  #8B8B93;   /* captions, labels */
+
+  --surface:    #161618;   /* card feature închis */
+  --surface-2:  #232327;   /* icon chips, elemente închise ridicate */
+  --on-dark:    #FFFFFF;   /* text pe suprafețe închise */
+  --on-dark-muted: #A6A6AE;/* text secundar pe închis */
+
+  --violet:     #6C5CE7;   /* accent principal / CTA */
+  --violet-600: #5B4BD6;   /* violet apăsat / hover */
+  --amber:      #FF9A62;   /* terminus-ul gradientului */
+
+  /* Gradientul-semnătură (orb-ul) */
+  --orb: radial-gradient(120% 120% at 30% 25%,
+          #8B7BFF 0%, #6C5CE7 38%, #B86CE0 64%, #FF9A62 100%);
+
+  /* Rețeta de fundal (studio sweep, se aplică pe <body>) */
+  --backdrop:
+    radial-gradient(90% 70% at 85% 8%, var(--silver-400) 0%, rgba(183,185,193,0) 55%),
+    linear-gradient(160deg, var(--silver-100) 0%, var(--silver-200) 45%, var(--silver-300) 100%);
+
+  /* --------------------------------------------------------
+     2. Tipografie
+     -------------------------------------------------------- */
+  --display: "Poppins", system-ui, -apple-system, sans-serif;  /* headings, 700–800 */
+  --body:    "Inter",   system-ui, -apple-system, sans-serif;  /* body, 400 */
+
+  /* Scale de dimensiuni */
+  --fs-display-xl: clamp(40px, 7vw, 68px);   /* headline hero */
+  --fs-display-l:  34px;
+  --fs-heading:    clamp(24px, 3.2vw, 30px);
+  --fs-lede:       clamp(17px, 2.4vw, 20px);
+  --fs-body:       16px;
+  --fs-label:      12px;
+
+  /* --------------------------------------------------------
+     3. Radii
+     -------------------------------------------------------- */
+  --r-sm:   12px;   /* icon chips, cutii mici */
+  --r-md:   20px;   /* swatches, tile-uri de imagine */
+  --r-lg:   28px;   /* carduri feature & content */
+  --r-pill: 999px;  /* butoane, badge-uri, bare de contact */
+
+  /* --------------------------------------------------------
+     4. Umbre / elevație
+     -------------------------------------------------------- */
+  --shadow-soft:  0 20px 60px rgba(11, 11, 12, .12);  /* carduri pe fundal deschis */
+  --shadow-card:  0 30px 80px rgba(0, 0, 0, .38);     /* card feature închis */
+  --shadow-btn:   0 10px 30px rgba(108, 92, 231, .40);/* CTA violet */
+  --shadow-hover: 0 34px 80px rgba(11, 11, 12, .18);  /* card la hover (ridicat) */
+
+  /* --------------------------------------------------------
+     5. Spacing — scală 4-based
+     -------------------------------------------------------- */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;   /* ritmul între secțiuni majore */
+
+  /* --------------------------------------------------------
+     6. Layout & misc
+     -------------------------------------------------------- */
+  --container: 1200px;         /* lățime maximă conținut */
+  --nav-h: 72px;               /* înălțime bară de navigare */
+  --hairline: rgba(11, 11, 12, .08);         /* linie fină pe deschis */
+  --hairline-dark: rgba(255, 255, 255, .08); /* linie fină pe închis */
+  --hairline-dark-strong: rgba(255, 255, 255, .22); /* border vizibil pe închis */
+  --ease: cubic-bezier(.22, 1, .36, 1);      /* easing standard */
+
+  /* Suprafețe glass (silver-100 cu transparență) */
+  --glass-nav:   rgba(246, 246, 248, .72);   /* nav la scroll */
+  --glass-panel: rgba(246, 246, 248, .96);   /* panou meniu mobil */
+  --overlay:     rgba(11, 11, 12, .85);      /* fundal lightbox / modal */
+
+  /* Inele de focus (glow, pe lângă outline-ul de focus-visible) */
+  --ring-violet: 0 0 0 3px rgba(108, 92, 231, .35);
+  --ring-amber:  0 0 0 3px rgba(255, 154, 98, .25);
+
+  /* --------------------------------------------------------
+     7. Brand terț & feedback (stări formular)
+     -------------------------------------------------------- */
+  --whatsapp:        #25D366;                /* verde WhatsApp */
+  --whatsapp-tint:   rgba(37, 211, 102, .16);
+  --whatsapp-border: rgba(37, 211, 102, .5);
+
+  --success-text:    #86EFAC;                /* succes (pe închis) */
+  --success-bg:      rgba(37, 211, 102, .14);
+  --success-border:  rgba(37, 211, 102, .4);
+  --error-text:      var(--amber);           /* eroare — reutilizează accentul */
+  --error-bg:        rgba(255, 154, 98, .14);
+  --error-border:    rgba(255, 154, 98, .4);
+}

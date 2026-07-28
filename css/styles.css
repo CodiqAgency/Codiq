@@ -1,0 +1,1449 @@
+/* ============================================================
+   CODIQ · Stiluri componente & secțiuni
+   Mobile-first. Colaps curat sub 560px.
+   ============================================================ */
+
+/* --------------------------------------------------------
+   0. Reset & baze
+   -------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--backdrop);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, p { margin: 0; }
+
+/* Container central */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--s5);
+}
+
+/* Focus vizibil pe toate elementele interactive */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* Utilitar accesibilitate — ascunde vizual, păstrează pt. screen reader */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------
+   1. Tipografie utilitară
+   -------------------------------------------------------- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--body);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate);   /* a11y: slate în loc de slate-400 → contrast AA pe silver */
+}
+
+/* --------------------------------------------------------
+   2. Butoane
+   -------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  font-family: var(--body);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: 1;
+  padding: 15px var(--s6);
+  min-height: 44px;              /* zonă de tap confortabilă (inclusiv btn--sm) */
+  border-radius: var(--r-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform .25s var(--ease),
+              background-color .25s var(--ease),
+              color .25s var(--ease),
+              box-shadow .25s var(--ease);
+}
+
+/* Primar — fill violet, un singur primar per secțiune */
+.btn--primary {
+  background: var(--violet);
+  color: var(--on-dark);
+  box-shadow: var(--shadow-btn);
+}
+.btn--primary:hover {
+  background: var(--violet-600);
+  transform: translateY(-2px);
+}
+
+/* Ghost — transparent, border ink, la hover devine fill ink */
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink-700);
+}
+.btn--ghost:hover {
+  background: var(--ink);
+  color: var(--on-dark);
+  transform: translateY(-2px);
+}
+
+/* Variantă compactă pentru nav */
+.btn--sm { padding: 11px var(--s5); font-size: 14px; }
+
+/* --------------------------------------------------------
+   3. Pill badge (semnal de încredere)
+   -------------------------------------------------------- */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s2) var(--s4);
+  background: var(--on-dark);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-soft);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-700);
+}
+.pill-badge__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--violet);
+  flex: none;
+}
+
+/* ============================================================
+   4. NAVBAR (sticky)
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  transition: background-color .3s var(--ease),
+              box-shadow .3s var(--ease),
+              backdrop-filter .3s var(--ease);
+}
+
+/* Starea „scrolled": fundal glass + hairline jos */
+.nav.is-scrolled {
+  background: var(--glass-nav);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--s5);
+}
+
+/* Logo text */
+.nav__logo {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Grup ancore (desktop) */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--s6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav__link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-700);
+  transition: color .2s var(--ease);
+}
+.nav__link:hover { color: var(--violet); }
+
+/* Grup dreapta (CTA + hamburger) */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+/* Hamburger — ascuns pe desktop */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.nav__toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  margin-inline: auto;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .3s var(--ease), opacity .2s var(--ease);
+}
+/* Animație în „X" când meniul e deschis */
+.nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero {
+  padding-block: var(--s8) var(--s8);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s8);
+  align-items: center;
+}
+
+/* Coloana de text */
+.hero__eyebrow { margin-bottom: var(--s4); }
+
+.hero__title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: var(--fs-display-xl);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: var(--s5);
+  max-width: 15ch;
+}
+
+.hero__lede {
+  font-size: var(--fs-lede);
+  color: var(--slate);
+  max-width: 46ch;
+  margin-bottom: var(--s6);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  margin-bottom: var(--s5);
+}
+
+/* Zona vizuală (mockup + orb) */
+.hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Orb decorativ în spate */
+.hero__orb {
+  position: absolute;
+  z-index: 0;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--orb);
+  filter: blur(46px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Mockup hero — PNG cu fundal transparent, plutește peste orb */
+.hero__mockup-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  /* umbră care urmează silueta laptopului (fundal transparent) */
+  filter: drop-shadow(0 26px 50px rgba(11, 11, 12, .28));
+}
+
+/* --------------------------------------------------------
+   6. Breakpoint desktop — hero side-by-side, fără scroll
+   -------------------------------------------------------- */
+@media (min-width: 768px) {
+  .hero {
+    /* Umple viewport-ul sub nav, fără scroll pe desktop */
+    min-height: calc(100vh - var(--nav-h));
+    display: flex;
+    align-items: center;
+  }
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .hero__visual { order: 2; }
+  .hero__mockup { aspect-ratio: 5 / 4; }
+}
+
+/* --------------------------------------------------------
+   7. Breakpoint mobil — hamburger + panou meniu
+   -------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Ascunde ancorele inline, arată hamburger-ul */
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+
+  /* Panou meniu mobil (glisează de sus) */
+  .nav__links.is-open {
+    display: flex;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: var(--s4) var(--s5) var(--s6);
+    background: var(--glass-panel);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: var(--shadow-soft);
+  }
+  .nav__links.is-open .nav__link {
+    width: 100%;
+    padding-block: var(--s4);
+    font-size: 18px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav__links.is-open .nav__link:last-child { border-bottom: none; }
+}
+
+/* --------------------------------------------------------
+   8. Colaps fin sub 560px
+   -------------------------------------------------------- */
+@media (max-width: 560px) {
+  .container { padding-inline: var(--s4); }
+
+  .hero { padding-block: var(--s7); }
+  .hero__grid { gap: var(--s7); }
+
+  /* Orb-ul se micșorează */
+  .hero__orb { width: 88%; filter: blur(34px); opacity: 0.5; }
+
+  /* Butoanele se stivuiesc pe toată lățimea */
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { width: 100%; }
+}
+
+/* --------------------------------------------------------
+   9. Respectă prefers-reduced-motion
+   -------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   10. ANIMAȚII DE INTRARE LA SCROLL (reveal)
+   Se activează doar când JS adaugă .reveal-ready pe <body>,
+   astfel conținutul rămâne vizibil dacă JS lipsește.
+   ============================================================ */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   11. ELEMENTE COMUNE DE SECȚIUNE (heads, icon chip)
+   ============================================================ */
+/* Antet de secțiune reutilizabil */
+.section-head { max-width: 60ch; margin-bottom: var(--s7); }
+.section-head .eyebrow { margin-bottom: var(--s4); }
+
+.section-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--fs-heading);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.section-lede {
+  margin-top: var(--s4);
+  font-size: var(--fs-lede);
+  color: var(--slate);
+  max-width: 52ch;
+}
+
+/* Icon chip (38px, --r-sm) — variantă deschisă (default) și închisă */
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  flex: none;
+  border-radius: var(--r-sm);
+  background: var(--silver-200);
+  color: var(--violet);
+  border: 1px solid var(--hairline);
+}
+.icon-chip--dark {
+  background: var(--surface-2);
+  color: var(--on-dark);
+  border-color: var(--hairline-dark);
+}
+
+/* ============================================================
+   12. SECȚIUNEA 3 · DOVADĂ SOCIALĂ (thin strip)
+   Ritm vertical redus față de o secțiune completă.
+   ============================================================ */
+.proof {
+  padding-block: var(--s6);
+  border-block: 1px solid var(--hairline);
+}
+
+.proof__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s5) var(--s7);
+}
+
+/* Divider hairline elegant între itemi (doar pe desktop, vezi mai jos) */
+.proof__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.proof__num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(26px, 4vw, 34px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.proof__label {
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+}
+
+/* Rând alternativ de logo-uri (pregătit, folosit doar dacă decomentezi) */
+.proof__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s7);
+}
+.proof__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding-inline: var(--s5);
+  color: var(--slate-400);
+  font-weight: 600;
+  filter: grayscale(1);
+  opacity: .7;
+}
+
+/* ============================================================
+   13. SECȚIUNEA 4 · PROBLEMA
+   ============================================================ */
+.problem { padding-block: var(--s8); }
+
+.problem__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s5);
+}
+
+.pain-card {
+  background: var(--silver-100);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft);
+  padding: var(--s6);
+}
+.pain-card .icon-chip { margin-bottom: var(--s5); }
+
+.pain-card__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: var(--s2);
+}
+.pain-card__text {
+  font-size: 15px;
+  color: var(--slate);
+}
+
+/* ============================================================
+   14. SECȚIUNEA 5 · SOLUȚIA / SERVICIILE (feature card)
+   ============================================================ */
+.solution {
+  padding-block: var(--s8);
+  overflow-x: clip;   /* clipează orb-ul decorativ ca să nu creeze scroll orizontal */
+}
+
+.solution__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Orb decorativ — singura pată de culoare din secțiune */
+.solution__orb {
+  position: absolute;
+  z-index: 0;
+  top: -8%;
+  right: -6%;
+  width: 46%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--orb);
+  filter: blur(60px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* Feature card semnătură — near-black, ultra-rotunjit */
+.feature-card {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--s5) var(--s6);
+}
+
+/* Rânduri separate prin divideri hairline */
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding-block: var(--s5);
+  border-top: 1px solid var(--hairline-dark);
+}
+.feature-row:first-child { border-top: none; }
+
+.feature-row__title {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--on-dark);
+  margin-bottom: 2px;
+}
+.feature-row__desc {
+  font-size: 14px;
+  color: var(--on-dark-muted);
+}
+
+/* CTA sub feature card */
+.solution__cta {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--s6);
+}
+
+/* ============================================================
+   15. BREAKPOINT DESKTOP pentru secțiunile 3–5
+   ============================================================ */
+@media (min-width: 768px) {
+  /* Dovadă socială: divideri hairline verticale între cifre */
+  .proof__item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: calc(var(--s7) / -2);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 34px;
+    background: var(--silver-400);
+    opacity: .6;
+  }
+
+  /* Problema: trei carduri pe rând */
+  .problem__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Soluția: feature card mai lat, centrat, cu aer */
+  .feature-card { padding: var(--s6) var(--s7); }
+  .feature-row__title { font-size: 18px; }
+}
+
+/* ============================================================
+   16. COLAPS FIN sub 560px pentru secțiunile 3–5
+   ============================================================ */
+@media (max-width: 560px) {
+  .proof { padding-block: var(--s5); }
+  .proof__list { gap: var(--s5) var(--s6); }
+
+  .problem { padding-block: var(--s7); }
+  .solution { padding-block: var(--s7); }
+
+  .section-head { margin-bottom: var(--s6); }
+
+  .pain-card { padding: var(--s5); }
+  .feature-card { padding: var(--s4) var(--s5); }
+
+  /* Orb-ul se micșorează */
+  .solution__orb { width: 70%; filter: blur(44px); opacity: .24; }
+
+  /* CTA pe toată lățimea */
+  .solution__cta .btn { display: flex; width: 100%; }
+}
+
+/* ============================================================
+   17. STAGGER pentru reveal (întârziere pe --i)
+   Folosit de cardurile de portofoliu și pașii de proces.
+   ============================================================ */
+.reveal-ready [data-reveal] { transition-delay: calc(var(--i, 0) * 80ms); }
+
+/* ============================================================
+   18. SECȚIUNEA 6 · PORTOFOLIU
+   ============================================================ */
+.portfolio { padding-block: var(--s8); }
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* mobil: 1 pe rând */
+  gap: var(--s6);
+}
+
+/* Card de proiect */
+.project-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+/* Frame-ul imaginii — device-mockup simplu */
+.project-card__frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--silver-200);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-soft);
+  cursor: zoom-in;                 /* semnalează că se deschide mărit */
+  -webkit-appearance: none;
+  appearance: none;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+/* Reflexie subtilă în partea de sus a frame-ului */
+.project-card__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(160deg,
+              rgba(255, 255, 255, .18) 0%,
+              rgba(255, 255, 255, 0) 26%);
+}
+
+.project-card__img {
+  display: block;
+  width: 100%;
+  height: auto;                 /* lasă aspect-ratio să preia (altfel atributul height=1420 forțează înălțimea) */
+  aspect-ratio: 4 / 3;          /* încadrare uniformă, orizontală */
+  object-fit: cover;
+  object-position: top center;  /* arată hero-ul site-ului */
+}
+
+/* Hover: ridică ușor cardul */
+.project-card:hover .project-card__frame {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Corpul cardului (sub imagine) */
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.project-card__meta { display: flex; flex-direction: column; gap: 2px; }
+.project-card__client {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.project-card__type {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--slate);   /* a11y: contrast AA pe cardul silver */
+}
+
+/* Rând de rezultat evidențiat subtil */
+.project-card__result {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  align-self: flex-start;
+  padding: 6px var(--s3);
+  border-radius: var(--r-pill);
+  background: var(--silver-100);
+  border: 1px solid var(--hairline);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-700);
+}
+.project-card__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--violet);
+  flex: none;
+}
+
+/* Link „Vezi live →" */
+.project-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color .2s var(--ease), gap .2s var(--ease);
+}
+.project-card__link span { transition: transform .2s var(--ease); }
+.project-card__link:hover { color: var(--violet); gap: var(--s3); }
+.project-card__link:hover span { transform: translateX(2px); }
+
+/* ============================================================
+   19. SECȚIUNEA 7 · PROCESUL
+   ============================================================ */
+.process { padding-block: var(--s8); }
+
+.process__steps {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;   /* mobil: stivuit */
+  gap: var(--s6);
+}
+
+/* Linia de conexiune — mobil: verticală, prin centrul chip-urilor */
+.process__line {
+  position: absolute;
+  z-index: 0;
+  left: 23px;                   /* centrul chip-ului (48/2 - 1) */
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: var(--silver-400);
+  opacity: .5;
+  border-radius: 2px;
+}
+.process__line-fill {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  height: 0;                    /* crește pe verticală când e „aprins" */
+  background: var(--orb);
+  border-radius: 2px;
+  transition: height 1.4s var(--ease);
+}
+.process__steps.is-lit .process__line-fill { height: 100%; }
+
+/* Un pas — mobil: chip stânga (întins pe 2 rânduri), titlu+text în dreapta */
+.process__step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: var(--s4);
+  row-gap: 2px;
+  align-items: start;
+}
+.process__step .step__chip  { grid-column: 1; grid-row: 1 / span 2; }
+.process__step .step__title { grid-column: 2; grid-row: 1; }
+.process__step .step__text  { grid-column: 2; grid-row: 2; }
+
+/* Icon chip numerotat */
+.step__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--on-dark);
+  border: 1px solid var(--hairline-dark);
+  box-shadow: var(--shadow-soft);
+}
+.step__num {
+  position: absolute;
+  top: -6px; right: -6px;
+  width: 20px; height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--violet);
+  color: var(--on-dark);
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 600;
+  border: 2px solid var(--silver-100);
+}
+
+.step__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 2px;
+  padding-top: 4px;             /* aliniere optică cu chip-ul */
+}
+.step__text {
+  font-size: 14px;
+  color: var(--slate);
+}
+
+/* CTA sub pași */
+.process__cta { margin-top: var(--s7); }
+
+/* ============================================================
+   20. BREAKPOINT DESKTOP pentru secțiunile 6–7
+   ============================================================ */
+@media (min-width: 640px) {
+  /* Portofoliu: 2 pe rând pe tabletă */
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); gap: var(--s6); }
+  /* Al 5-lea card (orfan) se întinde pe toată lățimea, centrat */
+  .portfolio__grid .project-card:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 60%;
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 960px) {
+  /* Portofoliu: 3 sus / 2 jos, ambele rânduri pline (grid 6 coloane) */
+  .portfolio__grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--s7) var(--s6);
+  }
+  .portfolio__grid .project-card { grid-column: span 2; }          /* 3 × 2 = 6 */
+  .portfolio__grid .project-card:nth-child(4),
+  .portfolio__grid .project-card:nth-child(5) {
+    grid-column: span 3;                                           /* 2 × 3 = 6 */
+    max-width: none;
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Proces: 4 pași orizontali, conectați printr-o linie */
+  .process__steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s5);
+  }
+
+  /* Linia devine orizontală, între centrele primului și ultimului chip */
+  .process__line {
+    left: 12.5%;
+    right: 12.5%;
+    top: 24px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+  .process__line-fill {
+    width: 0;
+    height: 100%;
+    transition: width 1.4s var(--ease);
+  }
+  .process__steps.is-lit .process__line-fill { width: 100%; height: 100%; }
+
+  /* Pașii: chip centrat sus, text centrat dedesubt */
+  .process__step {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: var(--s4);
+  }
+  /* Resetează plasarea explicită din layoutul mobil */
+  .process__step .step__chip,
+  .process__step .step__title,
+  .process__step .step__text {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .step__title { padding-top: 0; margin-top: var(--s2); }
+  .step__text { max-width: 24ch; }
+}
+
+/* ============================================================
+   21. COLAPS FIN sub 560px pentru secțiunile 6–7
+   ============================================================ */
+@media (max-width: 560px) {
+  .portfolio { padding-block: var(--s7); }
+  .process { padding-block: var(--s7); }
+
+  .portfolio__grid { gap: var(--s5); }
+
+  /* Rezultatul și linkul rămân aliniate curat pe mobil */
+  .process__cta .btn { display: flex; width: 100%; }
+}
+
+/* ============================================================
+   22. HELPERE ADIȚIONALE (secțiunile 8–10 + footer)
+   ============================================================ */
+/* Container mai îngust pentru conținut de tip text (FAQ) */
+.container--narrow { max-width: 760px; }
+
+/* Buton pe toată lățimea */
+.btn--block { display: flex; width: 100%; }
+
+/* Eyebrow pe fundal închis */
+.eyebrow--on-dark { color: var(--on-dark-muted); }
+
+/* Buton WhatsApp — secundar, verde discret pe închis */
+.btn--whatsapp {
+  background: transparent;
+  color: var(--on-dark);
+  border-color: var(--hairline-dark-strong);
+}
+.btn--whatsapp:hover {
+  background: var(--whatsapp-tint);   /* verde WhatsApp, discret */
+  border-color: var(--whatsapp-border);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   23. SECȚIUNEA 8 · TESTIMONIALE (carduri near-black)
+   ============================================================ */
+.testimonials { padding-block: var(--s8); }
+
+.testimonials__grid {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; 
+  grid-template-columns: 1fr;   /* mobil: stivuit */
+  gap: var(--s5);
+}
+
+.testimonial-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  background: var(--surface);
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--s6);
+}
+
+/* Rând de stele (auriu subtil) */
+.testimonial-card__stars {
+  color: var(--amber);
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.testimonial-card__quote {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--on-dark);
+  flex: 1;
+}
+
+/* Autor */
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--hairline-dark);
+}
+.testimonial-card__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--on-dark-muted);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  object-fit: cover;   /* dacă e <img> */
+}
+.testimonial-card__meta { display: flex; flex-direction: column; gap: 1px; }
+.testimonial-card__name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--on-dark);
+}
+.testimonial-card__firm {
+  font-size: 13px;
+  color: var(--on-dark-muted);
+}
+
+/* ============================================================
+   24. SECȚIUNEA 9 · FAQ (accordion)
+   ============================================================ */
+.faq { padding-block: var(--s8); }
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.faq-item {
+  background: var(--silver-100);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.faq-item__q { margin: 0; }
+
+/* Butonul-declanșator */
+.faq-item__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  width: 100%;
+  padding: var(--s5);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* Iconița care se rotește la deschidere */
+.faq-item__icon {
+  flex: none;
+  color: var(--slate);
+  transition: transform .3s var(--ease);
+}
+.faq-item__trigger[aria-expanded="true"] .faq-item__icon {
+  transform: rotate(180deg);
+  color: var(--violet);
+}
+
+/* Panoul de răspuns */
+.faq-item__panel {
+  padding: 0 var(--s5) var(--s5);
+  color: var(--slate);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.faq-item__panel p { margin: 0; }
+
+/* ============================================================
+   25. SECȚIUNEA 10 · CONTACT / CTA FINAL
+   ============================================================ */
+.contact { padding-block: var(--s8); }
+
+/* Cardul „greu" near-black care închide pagina */
+.contact__card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--s7) var(--s6);
+}
+/* Orb decorativ subtil în colț */
+.contact__orb {
+  position: absolute;
+  z-index: 0;
+  top: -30%;
+  right: -12%;
+  width: 55%;
+  max-width: 480px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--orb);
+  filter: blur(70px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.contact__inner { position: relative; z-index: 1; }
+
+.contact__head { max-width: 34ch; margin-bottom: var(--s6); }
+.contact__head .eyebrow { margin-bottom: var(--s4); }
+.contact__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(28px, 4.5vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--on-dark);
+}
+.contact__lede {
+  margin-top: var(--s4);
+  font-size: var(--fs-lede);
+  color: var(--on-dark-muted);
+}
+
+/* Formular */
+.contact-form { display: flex; flex-direction: column; gap: var(--s5); }
+
+.field { display: flex; flex-direction: column; gap: var(--s2); }
+.field__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--on-dark);
+}
+.field__optional { color: var(--on-dark-muted); font-weight: 400; }
+
+.field__input {
+  width: 100%;
+  padding: 14px var(--s4);
+  font-family: var(--body);
+  font-size: 16px;                 /* ≥16px: evită zoom-ul automat pe iOS */
+  color: var(--on-dark);
+  background: var(--surface-2);
+  border: 1.5px solid var(--hairline-dark);
+  border-radius: var(--r-sm);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field__input::placeholder { color: var(--slate-400); }
+.field__input:focus {
+  outline: none;
+  border-color: var(--violet);
+  box-shadow: var(--ring-violet);
+}
+.field__textarea { resize: vertical; min-height: 84px; }
+
+/* Select cu săgeată proprie */
+.field__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23A6A6AE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--s4) center;
+  padding-right: var(--s7);
+}
+
+.field__hint { font-size: 13px; color: var(--on-dark-muted); }
+
+/* Eroare de câmp */
+.field__error { font-size: 13px; color: var(--amber); font-weight: 500; }
+.field__input.is-invalid {
+  border-color: var(--amber);
+  box-shadow: var(--ring-amber);
+}
+
+.contact-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  margin-top: var(--s2);
+}
+
+/* Mesaj de stare submit */
+.contact-form__status {
+  margin: 0;
+  padding: var(--s4);
+  border-radius: var(--r-sm);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+.contact-form__status.is-success {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
+}
+.contact-form__status.is-error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-border);
+}
+
+/* ============================================================
+   26. FOOTER
+   ============================================================ */
+.footer {
+  padding-block: var(--s7) var(--s6);
+  border-top: 1px solid var(--hairline);
+}
+
+/* Contact bar (pill) */
+.contact-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding: var(--s3) var(--s5);
+  background: var(--on-dark);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-soft);
+}
+.contact-bar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+}
+/* Brand mark — pătrat rotunjit cu orb */
+.contact-bar__mark {
+  width: 28px; height: 28px;
+  border-radius: var(--r-sm);
+  background: var(--orb);
+  flex: none;
+}
+.contact-bar__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s5);
+}
+.contact-bar__links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-700);
+  transition: color .2s var(--ease);
+}
+.contact-bar__links a:hover { color: var(--violet); }
+
+/* Rândul de jos */
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-top: var(--s6);
+}
+.footer__nav,
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s5);
+}
+.footer__nav a,
+.footer__social a {
+  font-size: 14px;
+  color: var(--slate);
+  transition: color .2s var(--ease);
+}
+.footer__nav a:hover,
+.footer__social a:hover { color: var(--violet); }
+.footer__copy {
+  font-size: 14px;
+  color: var(--slate-400);
+}
+
+/* ============================================================
+   27. BREAKPOINT DESKTOP pentru secțiunile 8–10
+   ============================================================ */
+@media (min-width: 768px) {
+  /* Testimoniale: 3 pe rând */
+  .testimonials__grid { grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+
+  /* Butoanele submit + WhatsApp unul lângă altul (se împachetează dacă e strâmt) */
+  .contact-form__actions { flex-direction: row; flex-wrap: wrap; }
+  .contact-form__actions .btn { flex: 1 1 150px; }
+}
+
+/* Contact pe 2 coloane doar de la ≥900px (la 768 rămâne stivuit,
+   altfel coloanele devin prea înguste și formularul depășește) */
+@media (min-width: 900px) {
+  .contact__card { padding: var(--s8) var(--s8); }
+  .contact__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);  /* egale, pot micșora */
+    gap: var(--s8);
+    align-items: start;
+  }
+  .contact__head { margin-bottom: 0; }
+}
+
+/* ============================================================
+   28. COLAPS FIN sub 560px pentru secțiunile 8–10 + footer
+   ============================================================ */
+@media (max-width: 560px) {
+  .testimonials { padding-block: var(--s7); }
+  .faq { padding-block: var(--s7); }
+  .contact { padding-block: var(--s7); }
+
+  .testimonial-card { padding: var(--s5); }
+  .contact__card { padding: var(--s6) var(--s5); }
+  .faq-item__trigger { padding: var(--s4); font-size: 16px; }
+  .faq-item__panel { padding: 0 var(--s4) var(--s4); }
+
+  /* Footer: totul stivuit și centrat */
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: var(--s5); }
+
+  /* Zone de tap confortabile (~44px) pe mobil pentru linkurile mici */
+  .footer__nav a,
+  .footer__social a,
+  .contact-bar__links a,
+  .project-card__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+/* ============================================================
+   29. PERFORMANȚĂ — mobil
+   background-attachment: fixed provoacă jank la scroll pe mobil;
+   îl dezactivăm sub 768px (aspectul silver rămâne coerent).
+   ============================================================ */
+@media (max-width: 767px) {
+  body { background-attachment: scroll; }
+}
+
+/* ============================================================
+   30. LIGHTBOX PORTOFOLIU
+   Ascuns implicit (visibility + opacity), deci inert fără JS.
+   Se deschide prin clasa .is-open.
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s5);
+  background: var(--overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;            /* scos din tab order când e închis */
+  /* visibility comută instant la deschidere (0s), dar la închidere e
+     amânată cu .28s ca să se vadă fade-out-ul; astfel butonul e
+     focusabil imediat ce se deschide */
+  transition: opacity .28s var(--ease), visibility 0s linear .28s;
+}
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .28s var(--ease), visibility 0s linear 0s;
+}
+
+/* Imaginea întreagă, încadrată în viewport */
+.lightbox__img {
+  max-width: min(1100px, 94vw);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+  transform: scale(.96);
+  transition: transform .28s var(--ease);
+}
+.lightbox.is-open .lightbox__img { transform: scale(1); }
+
+/* Buton de închidere (colț dreapta-sus) */
+.lightbox__close {
+  position: fixed;
+  top: var(--s5);
+  right: var(--s5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  color: var(--on-dark);
+  border: 1px solid var(--hairline-dark-strong);
+  cursor: pointer;
+  transition: background-color .2s var(--ease), transform .2s var(--ease);
+}
+.lightbox__close:hover {
+  background: var(--surface);
+  transform: scale(1.05);
+}

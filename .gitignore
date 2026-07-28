@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Editor / tooling
+.vscode/
+.idea/
+*.log
+
+# Dependențe (dacă apar ulterior)
+node_modules/
